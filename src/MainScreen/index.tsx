@@ -1,86 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import chucnorris from '../images/chucnorris.png'
-// import styled from 'styled-components'
-import './index.css'
+import React from 'react'
+import styled from 'styled-components'
+import FormJokes from '../containers/FormJokes'
+import JokeContent from '../containers/JokeContent'
+import SaveJokes from '../containers/SaveJokes'
 
+const Container = styled.div`
+  display: flex;
+  max-width: 555px;
+  max-height: 704px;
+  margin: auto;
+  margin-top: 98px;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 98 px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 58px 72px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+`
 const MainScreenView: React.FC = () => {
-  const [jokeValue, setJokeValue] = useState('')
-  const [firstName, setFirstName] = useState('Chuck')
-  const [lastName, setLastName] = useState('Norris')
-  // const [jokeWithCategory, setJokeWithCategory] = useState([])
-  // const [selectedCategory, setSelecteCategory] = useState([])
-
-  const apiBase = 'https://api.icndb.com/'
-
-  const fetchJoke: any = async (url: string) => {
-    const response = await fetch(`${apiBase}${url}`)
-
-    if (!response.ok) {
-      throw new Error(
-        `Could not fetch ${url}` + `, received ${response.status}`
-      )
-    }
-    return await response.json()
-  }
-
-  // Get joke randomly
-  const getRandomJoke: any = async () => {
-    setFirstName('')
-    setLastName('')
-    const joke = await fetchJoke(
-      `jokes/random?firstName=${firstName}&lastName=${lastName}`
-    )
-    return setJokeValue(joke.value.joke)
-  }
-
-  useEffect(() => {
-    getRandomJoke()
-  }, [])
-
-  // // Get joke randomly
-  // const getJokeByCategory: any = async (category: string) => {
-  //   const joke = await fetchJoke(`jokes/random?category=${category}`)
-  //   return setJokeValue(joke.value.joke)
-  // }
-
-  // useEffect(() => {
-  //   getJokeByCategory()
-  // }, [])
-
-  // // Get joke with the selected category
-  // const handlingSelectCategory: any = (
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   setSelecteCategory(e.target.value)
-  // }
-
-  // Get joke with the selected category
-  const handlingInputName: any = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value.split(' ')[0])
-    setLastName(e.target.value.substring(firstName.length).trim())
-  }
-
   return (
-    <div className='container'>
-      <img className='profile' src={chucnorris} alt='chuck norris' />
-      <p className='joke_text'>{jokeValue}</p>
-      <form className='form_container'>
-        <select className='select_category'>
-          <option value='defaultValue'>Select a category</option>
-          <option value='Explicit'>Explicit</option>
-          <option value='Nerdy'>Nerdy</option>
-        </select>
-        <input
-          type='text'
-          className='input_name'
-          onChange={handlingInputName}
-          placeholder='Impersonate Chuck Norris '
-        />
-      </form>
-      <button className='jokeBtn' onClick={getRandomJoke}>
-        Draw a random {firstName} {lastName} Joke
-      </button>
-    </div>
+    <Container>
+      <JokeContent />
+      <FormJokes />
+      <SaveJokes />
+    </Container>
   )
 }
 
