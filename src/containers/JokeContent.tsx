@@ -21,7 +21,7 @@ const JokeText = styled.p`
   letter-spacing: normal;
 `
 
-const JokeContent: any = ({}) => {
+const JokeContent: any = () => {
   const { randomJoke } = useContext(GlobalContext)
 
   // {firstName === "Chuck" && lastName === 'Norris' ? (
@@ -34,7 +34,13 @@ const JokeContent: any = ({}) => {
   return (
     <div>
       <Image className='profile' src={chucknorris} alt='Chuck Norris' />
-      <JokeText className='joke_text'>{randomJoke.joke}</JokeText>
+      {randomJoke.joke === '' ? (
+        <JokeText>Loading...</JokeText>
+      ) : (
+        <JokeText
+          className='joke_text'
+          dangerouslySetInnerHTML={{ __html: randomJoke.joke }}></JokeText>
+      )}
     </div>
   )
 }

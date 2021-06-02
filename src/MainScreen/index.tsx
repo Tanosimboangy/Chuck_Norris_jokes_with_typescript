@@ -9,7 +9,6 @@ const Container = styled.div`
   max-width: 555px;
   max-height: 704px;
   margin: auto;
-  margin-top: 98px;
   align-items: center;
   border-radius: 20px;
   margin-bottom: 98 px;

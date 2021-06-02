@@ -1,12 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
-
-// var randomJoke: {
-//   id: number
-//   joke: string
-//   categories: string[]
-// }
-
-var numberOfJoke: 0
+import { createContext, useCallback, useEffect, useState } from 'react'
 
 interface names {
   randomJoke: {
@@ -14,7 +6,7 @@ interface names {
     joke: string
     categories: string[]
   }
-  numberOfJoke: any
+  numberOfJoke: number
   impersonateName: string
   firstName: string
   lastName: string
@@ -59,20 +51,17 @@ const GlobalProvider: React.FC = ({ children }) => {
   )
 
   const apiBase: any = 'https://api.icndb.com/'
-
   const fetchJoke: any = async (url: string) => {
     const response = await fetch(`${apiBase}${url}`)
 
     if (!response.ok) {
-      throw new Error(
-        `Could not fetch ${url}` + `, received ${response.status}`
-      )
+      throw new Error(`Could not fetch ${url}`)
     }
     return await response.json()
   }
 
   // Get joke randomly
-  const getRandomJoke = async () => {
+  const getRandomJoke = useCallback(async () => {
     if (selectedCategory !== '') {
       const joke = await fetchJoke(`jokes/random?category=${selectedCategory}`)
       return setRandomJoke(joke.value.joke)
@@ -90,23 +79,23 @@ const GlobalProvider: React.FC = ({ children }) => {
       const joke = await fetchJoke('jokes/random?')
       return setRandomJoke(joke.value)
     }
-  }
+  }, [selectedCategory, impersonateName, firstName, lastName])
 
   useEffect(() => {
     getRandomJoke()
   }, [])
 
   // Get joke with the selected category
-  const handlingSelectCategory = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handlingSelectCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedCategory(e.target.value)
   }
   // Get joke with the selected category
-  const handlingInputName = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImpersonateName(e.target.value)
-    setFirstName(impersonateName.split(' ')[0])
-    setLastName(impersonateName.slice(1).trim())
+  const handlingInputName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    var names = e.target.value
+    setImpersonateName(names)
+    var splitedName = names.split(' ')
+    setFirstName(splitedName[0])
+    setLastName(splitedName[1])
   }
 
   // Increase joke number
@@ -125,7 +114,7 @@ const GlobalProvider: React.FC = ({ children }) => {
       value={{
         randomJoke,
         fetchJoke,
-        numberOfJoke,
+        numberOfJoke: countJokesNumber,
         impersonateName,
         firstName,
         lastName,

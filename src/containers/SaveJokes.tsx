@@ -11,11 +11,9 @@ const ButtonsContainer = styled.div`
 `
 const CountingButtons = styled.div`
   display: flex;
-  max-width: 146px;
   margin-right: 8px;
   border-radius: 6px;
-  padding-left: 17px;
-  padding-right: 17px;
+  padding: 17px 15px;
   align-items: center;
   flex-direction: row;
   background-color: #f5f6f8;
@@ -24,10 +22,22 @@ const CountingButtons = styled.div`
 const ImageSource = styled.img``
 const IncreaseButton = styled.button`
   border-radius: 50%;
-  margin-left: 21px;
+`
+const InputJokesValue = styled.input`
+  width: 50px;
+  font-weight: 
+  color: #34394f;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.44;
+  letter-spacing: -0.52px;
+  background-color: #f5f6f8;
+  border: none;
+  outline: none;
+
+}
 `
 const DecreaseButton = styled.button`
-  margin-right: 21px;
   border-radius: 50%;
 `
 const SaveButtons = styled.button`
@@ -52,7 +62,7 @@ const Joke: React.FC = () => {
         <DecreaseButton type='button' onClick={decreaseJoke}>
           <ImageSource src={Minus} alt='decrease number joke' />
         </DecreaseButton>
-        <p className='jokes_number--value'>{numberOfJoke}</p>
+        <InputJokesValue type='Text' value={numberOfJoke} />
         <IncreaseButton type='button' onClick={increaseJoke}>
           <ImageSource src={Plus} alt='increase number joke' />
         </IncreaseButton>
