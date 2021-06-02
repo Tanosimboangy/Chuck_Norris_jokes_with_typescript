@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import chucknorris from '../images/chucknorris.png'
-// import personal_image from '../images/personal_image.png'
+import personal_image from '../images/personal_image.png'
 import { GlobalContext } from '../context/GlobalContext'
 import styled from 'styled-components'
 
@@ -22,18 +22,18 @@ const JokeText = styled.p`
 `
 
 const JokeContent: any = () => {
-  const { randomJoke } = useContext(GlobalContext)
+  const { randomJoke, firstName, lastName } = useContext(GlobalContext)
 
-  // {firstName === "Chuck" && lastName === 'Norris' ? (
-  //   <img className='profile' src={personal_image} alt='personal_image' />
-  //   ) : (
-  //     <img className='profile' src={chucnorris} alt='Chuck Norris' />
-  //   )
-  // }
+  const profile =
+    firstName !== 'Chuck' && lastName !== 'Norris' ? (
+      <Image className='profile' src={personal_image} alt='personal_image' />
+    ) : (
+      <Image className='profile' src={chucknorris} alt='Chuck Norris' />
+    )
 
   return (
     <div>
-      <Image className='profile' src={chucknorris} alt='Chuck Norris' />
+      {profile}
       {randomJoke.joke === '' ? (
         <JokeText>Loading...</JokeText>
       ) : (

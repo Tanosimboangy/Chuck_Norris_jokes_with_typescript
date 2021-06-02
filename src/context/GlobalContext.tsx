@@ -75,6 +75,12 @@ const GlobalProvider: React.FC = ({ children }) => {
         `jokes/random?category=${selectedCategory}&firstName=${firstName}&lastName=${lastName}`
       )
       return setRandomJoke(joke.value.joke)
+    } else if (countJokesNumber > 0) {
+      const joke = await fetchJoke(
+        `jokes/random?${countJokesNumber}&${selectedCategory}&${firstName}&${lastName}`
+      )
+      console.log(joke)
+      return setRandomJoke(joke)
     } else {
       const joke = await fetchJoke('jokes/random?')
       return setRandomJoke(joke.value)
@@ -83,6 +89,7 @@ const GlobalProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     getRandomJoke()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Get joke with the selected category
