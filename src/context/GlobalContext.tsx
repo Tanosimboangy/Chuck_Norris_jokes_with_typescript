@@ -10,6 +10,7 @@ interface names {
   impersonateName: string
   firstName: string
   lastName: string
+  selectedCategory: string
   fetchJoke: () => {}
   getRandomJoke: () => {}
   handlingSelectCategory: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -26,6 +27,7 @@ const initialValues: names = {
   },
   numberOfJoke: 0,
   impersonateName: '',
+  selectedCategory: '',
   firstName: '',
   lastName: '',
   fetchJoke: async () => {},
@@ -45,7 +47,9 @@ const GlobalProvider: React.FC = ({ children }) => {
   )
   const [firstName, setFirstName] = useState<string>('Chuck')
   const [lastName, setLastName] = useState<string>('Norris')
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState(
+    initialValues.selectedCategory
+  )
   const [countJokesNumber, setCountJokesNumber] = useState(
     initialValues.numberOfJoke
   )
@@ -75,12 +79,6 @@ const GlobalProvider: React.FC = ({ children }) => {
         `jokes/random?category=${selectedCategory}&firstName=${firstName}&lastName=${lastName}`
       )
       return setRandomJoke(joke.value.joke)
-    } else if (countJokesNumber > 0) {
-      const joke = await fetchJoke(
-        `jokes/random?${countJokesNumber}&${selectedCategory}&${firstName}&${lastName}`
-      )
-      console.log(joke)
-      return setRandomJoke(joke)
     } else {
       const joke = await fetchJoke('jokes/random?')
       return setRandomJoke(joke.value)
@@ -126,6 +124,7 @@ const GlobalProvider: React.FC = ({ children }) => {
         impersonateName,
         firstName,
         lastName,
+        selectedCategory: selectedCategory,
         getRandomJoke,
         handlingSelectCategory,
         handlingInputName,

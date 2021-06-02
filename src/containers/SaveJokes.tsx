@@ -64,8 +64,17 @@ const SaveButtons = styled.button<IBtn>`
   color: ${(props) => (props.pay === 'true' ? '#ffffff' : '#34394f')};
 `
 const Joke: React.FC = () => {
-  const { decreaseJoke, increaseJoke, numberOfJoke, getRandomJoke } =
-    useContext(GlobalContext)
+  const {
+    fetchJoke,
+    decreaseJoke,
+    increaseJoke,
+    numberOfJoke,
+    selectedCategory,
+    impersonateName,
+    getRandomJoke,
+  } = useContext(GlobalContext)
+  // const joke = await fetchJoke(`jokes/random?${numberOfJoke}&${selectedCategory}&${firstName}&${lastName}&${impersonateName}`
+  // return setRandomJoke(joke
 
   return (
     <ButtonsContainer>
