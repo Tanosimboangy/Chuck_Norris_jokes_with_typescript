@@ -17,6 +17,10 @@ const ButtonsContainer = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
+
+  @media (max-width: 350px) {
+    flex-wrap: wrap;
+  }
 `
 const CountingButtons = styled.div<Errorbtn>`
   display: flex;
@@ -27,6 +31,9 @@ const CountingButtons = styled.div<Errorbtn>`
   flex-direction: row;
   justify-content: space-between;
   background-color: ${(props) => (props.error ? '#f39a9a' : '#f5f6f8')};
+  @media (max-width: 350px) {
+    margin-bottom: 10px;
+  }
 `
 const ImageSource = styled.img``
 const IncreaseButton = styled.button<Errorbtn>`

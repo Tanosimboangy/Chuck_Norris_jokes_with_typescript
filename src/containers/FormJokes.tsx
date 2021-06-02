@@ -30,20 +30,6 @@ const SelectCategory = styled.select`
 const InputWrapper = styled.div`
   position: relative;
 `
-const Label = styled.label`
-  position: absolute;
-  display: block;
-  top: 20%;
-  bottom: 25%;
-  z-index: 1;
-  left: 16px;
-  font-size: 16px;
-  color: #c4c4c4;
-  font-size: 16px;
-  line-height: 1.63;
-  letter-spacing: -0.52px;
-  text-align: left;
-`
 const InputName = styled.input`
   outline: none;
   font-size: 16px;
@@ -60,7 +46,6 @@ const InputName = styled.input`
   width: calc(100% - 20px);
   border: 2px solid #c4c4c4;
   display: flex;
-}
 `
 const JokeButton = styled.button`
   width: 100%;
@@ -84,24 +69,24 @@ const Joke: any = () => {
     lastName,
     getRandomJoke,
     impersonateName,
-    // handlingSelectCategory,
+    handlingSelectCategory,
     handlingInputName,
   } = useContext(GlobalContext)
 
   return (
     <FormContainer>
       <SelectCategory
-        // onChange={handlingSelectCategory}
+        onChange={handlingSelectCategory}
         placeholder='Categories'>
         <option value='Explicit'>Explicit</option>
         <option value='Nerdy'>Nerdy</option>
       </SelectCategory>
       <InputWrapper>
-        <Label>Impersonate Chuck Norris</Label>
         <InputName
           type='text'
           value={impersonateName}
           onChange={handlingInputName}
+          placeholder='Impersonate Chuck Norris'
         />
       </InputWrapper>
       <JokeButton type='button' onClick={getRandomJoke}>

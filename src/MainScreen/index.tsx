@@ -5,6 +5,9 @@ import JokeContent from '../containers/JokeContent'
 import SaveJokes from '../containers/SaveJokes'
 
 const Container = styled.div`
+  background-color: #f9f9f9;
+`
+const Wrapper = styled.div`
   display: flex;
   max-width: 555px;
   max-height: 704px;
@@ -21,9 +24,11 @@ const Container = styled.div`
 const MainScreenView: React.FC = () => {
   return (
     <Container>
-      <JokeContent />
-      <FormJokes />
-      <SaveJokes />
+      <Wrapper>
+        <JokeContent />
+        <FormJokes />
+        <SaveJokes />
+      </Wrapper>
     </Container>
   )
 }

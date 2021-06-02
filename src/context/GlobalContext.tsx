@@ -13,7 +13,7 @@ interface names {
   selectedCategory: string
   fetchJoke: () => {}
   getRandomJoke: () => {}
-  handlingSelectCategory: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handlingSelectCategory: any
   handlingInputName: (e: React.ChangeEvent<HTMLInputElement>) => void
   decreaseJoke: any
   increaseJoke: any
