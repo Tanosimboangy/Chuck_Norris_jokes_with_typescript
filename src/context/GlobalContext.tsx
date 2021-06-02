@@ -85,6 +85,7 @@ const GlobalProvider: React.FC = ({ children }) => {
       const joke = await fetchJoke('jokes/random?')
       return setRandomJoke(joke.value)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory, impersonateName, firstName, lastName])
 
   useEffect(() => {
