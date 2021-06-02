@@ -8,26 +8,31 @@ interface IBtn {
   pay: string
 }
 
+interface Errorbtn {
+  error: boolean
+}
+
 const ButtonsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
 `
-const CountingButtons = styled.div`
+const CountingButtons = styled.div<Errorbtn>`
   display: flex;
   margin-right: 8px;
   border-radius: 6px;
   padding: 17px 15px;
   align-items: center;
   flex-direction: row;
-  background-color: #f5f6f8;
   justify-content: space-between;
+  background-color: ${(props) => (props.error ? '#f39a9a' : '#f5f6f8')};
 `
 const ImageSource = styled.img``
-const IncreaseButton = styled.button`
+const IncreaseButton = styled.button<Errorbtn>`
   border-radius: 50%;
+  background-color: ${(props) => (props.error ? '#f39a9a' : '#f5f6f8')};
 `
-const InputJokesValue = styled.input`
+const InputJokesValue = styled.input<Errorbtn>`
   width: 50px;
   font-weight: 
   color: #34394f;
@@ -38,11 +43,12 @@ const InputJokesValue = styled.input`
   background-color: #f5f6f8;
   border: none;
   outline: none;
-
+  background-color: ${(props) => (props.error ? '#f39a9a' : '#f5f6f8')};
 }
 `
-const DecreaseButton = styled.button`
+const DecreaseButton = styled.button<Errorbtn>`
   border-radius: 50%;
+  background-color: ${(props) => (props.error ? '#f39a9a' : '#f5f6f8')};
 `
 const SaveButtons = styled.button<IBtn>`
   width: 100%;
@@ -63,19 +69,30 @@ const Joke: React.FC = () => {
 
   return (
     <ButtonsContainer>
-      <CountingButtons>
-        <DecreaseButton type='button' onClick={decreaseJoke}>
+      <CountingButtons error={numberOfJoke > 100 ? true : false}>
+        <DecreaseButton
+          error={numberOfJoke > 100 ? true : false}
+          type='button'
+          onClick={decreaseJoke}>
           <ImageSource src={Minus} alt='decrease_number_of_joke' />
         </DecreaseButton>
-        <InputJokesValue type='Text' value={numberOfJoke} readOnly />
-        <IncreaseButton type='button' onClick={increaseJoke}>
+        <InputJokesValue
+          error={numberOfJoke > 100 ? true : false}
+          type='Text'
+          value={numberOfJoke}
+          readOnly
+        />
+        <IncreaseButton
+          error={numberOfJoke > 100 ? true : false}
+          type='button'
+          onClick={increaseJoke}>
           <ImageSource src={Plus} alt='increase_number_of_joke' />
         </IncreaseButton>
       </CountingButtons>
       <SaveButtons
         type='button'
         pay={numberOfJoke > 0 ? 'true' : 'false'}
-        disabled={numberOfJoke > 0 ? false : true}
+        disabled={numberOfJoke > 0 && numberOfJoke < 100 ? false : true}
         onClick={getRandomJoke}>
         Save Jokes
       </SaveButtons>
