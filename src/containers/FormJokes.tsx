@@ -38,7 +38,7 @@ const InputName = styled.input`
   line-height: 1.63;
   font-style: normal;
   border-radius: 6px;
-  margin: 0 0 32px 0;
+  margin: 0 0 20px 0;
   font-stretch: normal;
   letter-spacing: -0.52px;
   background-color: #ffffff;

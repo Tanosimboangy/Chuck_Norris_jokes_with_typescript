@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 import MainScreen from './MainScreen/index'
 import { GlobalProvider } from './context/GlobalContext'
 import { GlobalStyle } from './GlobalStyles/GlobalStyles'

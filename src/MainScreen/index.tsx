@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   margin-bottom: 98 px;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 58px 72px;
+  padding: 30px;
   background-color: #ffffff;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08);
 `
