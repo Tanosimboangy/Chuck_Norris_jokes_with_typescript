@@ -69,8 +69,8 @@ const Joke: any = () => {
     lastName,
     getRandomJoke,
     impersonateName,
-    handlingSelectCategory,
     handlingInputName,
+    handlingSelectCategory,
   } = useContext(GlobalContext)
 
   return (

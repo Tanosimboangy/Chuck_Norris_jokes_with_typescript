@@ -109,7 +109,7 @@ const Joke: React.FC = () => {
 
   useEffect(() => {
     fetchMultiplesJokes()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [numberOfJoke, firstName, lastName, fetchMultiplesJokes])
 
   const saveJokeToDownload = () => {
