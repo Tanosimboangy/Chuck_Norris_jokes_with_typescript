@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import Plus from '../images/plus.svg'
-import Minus from '../images/minus.svg'
+import Plus from '../images/increment.svg'
+import Minus from '../images/decrement.svg'
 import { GlobalContext } from '../context/GlobalContext'
 
 interface IBtn {
