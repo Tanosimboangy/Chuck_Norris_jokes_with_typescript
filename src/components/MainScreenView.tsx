@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import FormJokes from '../containers/FormJokes'
-import JokeContent from '../containers/JokeContent'
-import SaveJokes from '../containers/SaveJokes'
+import FormJokes from './FormJokes'
+import JokeContent from './JokeContent'
+import SaveJokes from './SaveJokes'
 
 const Container = styled.div`
   background-color: #f9f9f9;
